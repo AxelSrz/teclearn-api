@@ -1,0 +1,2 @@
+object @professor
+attributes :id

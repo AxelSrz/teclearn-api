@@ -1,0 +1,2 @@
+object @student
+attributes :id
