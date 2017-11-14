@@ -88,6 +88,7 @@ GEM
     rabl (0.13.1)
       activesupport (>= 2.3.14)
     rack (2.0.3)
+    rack-cors (1.0.2)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -152,6 +153,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.7)
   rabl (= 0.13.1)
+  rack-cors
   rails (~> 5.1.4)
   spring
   spring-watcher-listen (~> 2.0.0)
