@@ -62,7 +62,7 @@ class Student < ApplicationRecord
       h = {id: g.id, average: 0, currentExams: [], pastExams: []}
       valid_grades = []
       g.active_assignations.each do |assignation|
-        h_aux = {id: assignation.quiz.id, name: assignation.quiz.name, exipresAt: assignation.expiresAt}
+        h_aux = {id: assignation.id, name: assignation.quiz.name, exipresAt: assignation.expiresAt}
         hg = assignation.student_highest_grades(self.id)
         rg = assignation.student_recent_grades(self.id)
         unless hg.nil?
@@ -73,7 +73,7 @@ class Student < ApplicationRecord
         h[:currentExams].push(h_aux)
       end
       g.expired_assignations.each do |assignation|
-        h_aux = {id: assignation.quiz.id, name: assignation.quiz.name, exipresAt: assignation.expiresAt}
+        h_aux = {id: assignation.id, name: assignation.quiz.name, exipresAt: assignation.expiresAt}
         hg = assignation.student_highest_grades(self.id)
         rg = assignation.student_recent_grades(self.id)
         unless hg.nil?

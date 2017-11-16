@@ -1,4 +1,7 @@
 object @quiz
+attribute :id
 
-attributes :id, :name
-attributes resource_type: :resourceType, resource_url: :resource
+glue :quiz do
+  attribute :name
+  attributes resource_type: :resourceType, resource_url: :resource
+end

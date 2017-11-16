@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
   def set_state
     @student = Student.find(params[:id])
     @student.update_attributes(state_params)
-    
+
     api_response(@student, 'students/state')
   end
 
@@ -41,7 +41,9 @@ class StudentsController < ApplicationController
   end
 
   def state_params
-    params.permit(:state)
+    h = params.permit(:state)
+    h[:on_use_identifier] = params[:examId]
+    h
   end
 
 end

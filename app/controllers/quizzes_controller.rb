@@ -40,19 +40,20 @@ class QuizzesController < ApplicationController
   end
 
   def get_resource
-    @quiz = Quiz.find_by(id: params[:id])
+    @quiz = QuizToGroupAssignation.find_by(id: params[:id])
 
     api_response(@quiz, 'quizzes/resource')
   end
 
   def get_questions
-    @quiz = Quiz.find_by(id: params[:id])
+    @quiz = QuizToGroupAssignation.find_by(id: params[:id])
 
     api_response(@quiz, 'quizzes/show_as_exam')
   end
 
   def create_attempt
-    @attempt = Attempt.create!(attempt_params)
+    assignation = QuizToGroupAssignation.find(params[:id])
+    @attempt = Attempt.create!(quiz_id: assignation.quiz_id, group_id: assignation.quiz_id, student_id: params[:studentId]) unless assignation.nil?
 
     unless @attempt.nil?
       params[:answers].each do |answer|
@@ -75,6 +76,7 @@ class QuizzesController < ApplicationController
   end
 
   def attempt_params
-    h = {group_id: params[:groupId], quiz_id: params[:examId], student_id: params[:studentId]}
+    # deprecated
+    h = {assignation_id: [:id], student_id: params[:studentId]}
   end
 end

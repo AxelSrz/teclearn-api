@@ -19,11 +19,9 @@ Rails.application.routes.draw do
   patch '/teacher_groups/:id', to: 'groups#update', as: 'update_group'
 
   # Teacher's Overview
-  # TODO mandar el assignation_id en lugar del id del grupo
   get '/teacher_overview/:id', to: 'groups#overview', as: 'groups_overview'
 
-  # Teacher Group Exam Collection {checa POST}
-  # TODO checar que id me manda
+  # Teacher Group Exam Collection
   post '/teacher_groups_exams', to: 'quiz_to_group_assignations#create', as: 'assign_quiz_to_groups'
   patch '/teacher_groups_exams', to: 'quiz_to_group_assignations#update', as: 'update_quiz_to_groups'
 
