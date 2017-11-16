@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   patch '/teacher_groups/:id', to: 'groups#update', as: 'update_group'
 
   # Teacher's Overview
+  # TODO mandar el assignation_id en lugar del id del grupo
   get '/teacher_overview/:id', to: 'groups#overview', as: 'groups_overview'
 
   # Teacher Group Exam Collection {checa POST}
+  # TODO checar que id me manda
   post '/teacher_groups_exams', to: 'quiz_to_group_assignations#create', as: 'assign_quiz_to_groups'
   patch '/teacher_groups_exams', to: 'quiz_to_group_assignations#update', as: 'update_quiz_to_groups'
 
@@ -51,7 +53,7 @@ Rails.application.routes.draw do
   # Student Overview {checa GET necesita 2 ids y solo me esta mandando 1}
   get '/student_overview/:student_id/:group_id', to: 'students#group_overview', as: 'student_group_overview'
 
-  # Student State {checa GET necesita 2 ids y solo me esta mandando 1}
+  # Student State
   get '/student_state/:id', to: 'students#get_state', as: 'get_student_state'
   post '/student_state', to: 'students#set_state', as: 'set_student_state'
 
