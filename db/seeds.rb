@@ -10,46 +10,46 @@ jackie = Professor.create!(name: 'Jackeline Marcos', email: 'jackie@itesm.mx', p
 
 q = Question.create!([
   {
-    question_description: 'La respuesta es correcta',
+    question_description: '¿Cuantas leyes de Newton hay?',
     professor_id: serrano.id,
-    option_1: 'correcta',
-    option_2: 'incorrecta',
-    option_3: 'incorrecta tambien',
-    option_4: 'noup'
+    option_1: '3',
+    option_2: '4',
+    option_3: '2',
+    option_4: '5'
   },
   {
-    question_description: 'Who is best grill?',
+    question_description: 'La acelerción de la gravedad es ...',
     professor_id: serrano.id,
-    option_1: 'JC-chan',
-    option_2: 'Axel-kun',
-    option_3: 'Joe-san',
-    option_4: 'Henkel-sama'
+    option_1: '9.8 m/s',
+    option_2: '8.9 m/s',
+    option_3: '4.5 m/s',
+    option_4: '8.5 m/s'
   },
   {
-    question_description: 'Pizza with...',
+    question_description: '¿Cuál gráfica es la resultante de integrar la relación velocidad sobre tiempo?',
     professor_id: serrano.id,
-    option_1: 'Ham & Pineapple',
-    option_2: 'Pineapple',
-    option_3: 'Ham'
+    option_1: 'Distancia',
+    option_2: 'Acelerción',
+    option_3: 'Velocidad al cuadrado'
   }])
 
-t1 = Tag.create!(professor_id: serrano.id, name: 'food')
-t2 = Tag.create!(professor_id: serrano.id, name: 'plox')
+t1 = Tag.create!(professor_id: serrano.id, name: 'física')
+t2 = Tag.create!(professor_id: serrano.id, name: 'cinética')
 
 TagToQuestionAssignation.create!(tag_id: t1.id, question_id: q[2].id)
 TagToQuestionAssignation.create!(tag_id: t2.id, question_id: q[2].id)
 TagToQuestionAssignation.create!(tag_id: t2.id, question_id: q[0].id)
 TagToQuestionAssignation.create!(tag_id: t2.id, question_id: q[1].id)
 
-quizu = Quiz.create!(professor_id: serrano.id, name: 'Fuerza, mushashos', resource_url: 'https://youtu.be/9mD-ZmWuFTQ', resource_type: 'video')
+quizu = Quiz.create!(professor_id: serrano.id, name: 'Quiz de cinética', resource_url: 'https://youtu.be/S3QlbbUmszE', resource_type: 'video')
 
 QuestionToQuizAssignation.create!(question_id: q[0].id, quiz_id: quizu.id)
 QuestionToQuizAssignation.create!(question_id: q[1].id, quiz_id: quizu.id)
 QuestionToQuizAssignation.create!(question_id: q[2].id, quiz_id: quizu.id)
 
-group = Group.create!(professor_id: serrano.id, name: 'Fisiquisha 1', start_date: Date.yesterday, end_date: Date.yesterday >> 4)
-group2 = Group.create!(professor_id: serrano.id, name: 'Fisiquisha 2', start_date: Date.yesterday, end_date: Date.yesterday >> 4)
-group3 = Group.create!(professor_id: serrano.id, name: 'Fisiquisha 3', start_date: Date.yesterday, end_date: Date.yesterday >> 4)
+group = Group.create!(professor_id: serrano.id, name: 'Física 1', start_date: Date.yesterday, end_date: Date.yesterday >> 4)
+group2 = Group.create!(professor_id: serrano.id, name: 'Física 2', start_date: Date.yesterday, end_date: Date.yesterday >> 4)
+group3 = Group.create!(professor_id: serrano.id, name: 'Física 3', start_date: Date.yesterday, end_date: Date.yesterday >> 4)
 
 QuizToGroupAssignation.create!(quiz_id: quizu.id, group_id: group.id, expires_at: Date.today >> 1)
 
@@ -62,24 +62,24 @@ StudentToGroupAssignation.create!(student_id: cas.id, group_id: group.id)
 
 a2 = Attempt.create!(student_id: meme.id, quiz_id: quizu.id, group_id: group.id)
 
-AttemptAnswer.create!(question_id: q[0].id, attempt_id: a2.id, answer: 'correcta')
-AttemptAnswer.create!(question_id: q[1].id, attempt_id: a2.id, answer: 'JC-chan')
-AttemptAnswer.create!(question_id: q[2].id, attempt_id: a2.id, answer: 'Ham & Pineapple')
+AttemptAnswer.create!(question_id: q[0].id, attempt_id: a2.id, answer: '3')
+AttemptAnswer.create!(question_id: q[1].id, attempt_id: a2.id, answer: '9.8 m/s')
+AttemptAnswer.create!(question_id: q[2].id, attempt_id: a2.id, answer: 'Aceleración')
 
 a2.calculate_grade
 
 a1 = Attempt.create!(student_id: meme.id, quiz_id: quizu.id, group_id: group.id)
 
-AttemptAnswer.create!(question_id: q[0].id, attempt_id: a1.id, answer: 'correcta')
-AttemptAnswer.create!(question_id: q[1].id, attempt_id: a1.id, answer: 'Axel-kun')
-AttemptAnswer.create!(question_id: q[2].id, attempt_id: a1.id, answer: 'Ham & Pineapple')
+AttemptAnswer.create!(question_id: q[0].id, attempt_id: a1.id, answer: '3')
+AttemptAnswer.create!(question_id: q[1].id, attempt_id: a1.id, answer: '9.8 m/s')
+AttemptAnswer.create!(question_id: q[2].id, attempt_id: a1.id, answer: 'Distancia')
 
 a1.calculate_grade
 
 a3 = Attempt.create!(student_id: cas.id, quiz_id: quizu.id, group_id: group.id)
 
-AttemptAnswer.create!(question_id: q[0].id, attempt_id: a3.id, answer: 'correcta')
-AttemptAnswer.create!(question_id: q[1].id, attempt_id: a3.id, answer: 'JC-chan')
-AttemptAnswer.create!(question_id: q[2].id, attempt_id: a3.id, answer: 'Ham & Pineapple')
+AttemptAnswer.create!(question_id: q[0].id, attempt_id: a3.id, answer: '3')
+AttemptAnswer.create!(question_id: q[1].id, attempt_id: a3.id, answer: '9.8 m/s')
+AttemptAnswer.create!(question_id: q[2].id, attempt_id: a3.id, answer: 'Distancia')
 
 a3.calculate_grade
