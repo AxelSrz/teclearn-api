@@ -41,7 +41,7 @@ TagToQuestionAssignation.create!(tag_id: t2.id, question_id: q[2].id)
 TagToQuestionAssignation.create!(tag_id: t2.id, question_id: q[0].id)
 TagToQuestionAssignation.create!(tag_id: t2.id, question_id: q[1].id)
 
-quizu = Quiz.create!(professor_id: serrano.id, name: 'Quiz de cinética', resource_url: 'https://youtu.be/S3QlbbUmszE', resource_type: 'video')
+quizu = Quiz.create!(professor_id: serrano.id, name: 'Quiz de cinética', resource_url: 'https://youtu.be/S3QlbbUmszE', resource_type: 'youtube')
 
 QuestionToQuizAssignation.create!(question_id: q[0].id, quiz_id: quizu.id)
 QuestionToQuizAssignation.create!(question_id: q[1].id, quiz_id: quizu.id)
