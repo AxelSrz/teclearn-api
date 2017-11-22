@@ -5,7 +5,7 @@ class QuizToGroupAssignationsController < ApplicationController
 
     if !params[:groupsId].nil?
       params[:groupsId].each do |g_id|
-          @quiz_to_group_assignations.push(QuizToGroupAssignation.create!(quiz_id: params[:examId], group_id: g_id, expires_at: Time.at(params[:expiresAt]).in_time_zone.to_date))
+          @quiz_to_group_assignations.push(QuizToGroupAssignation.create!(quiz_id: params[:examId], group_id: g_id, expires_at: Time.at((params[:expiresAt]/1000).floor).in_time_zone.to_date))
       end
       @group = @quiz_to_group_assignations.first.group
     end
@@ -24,6 +24,6 @@ class QuizToGroupAssignationsController < ApplicationController
   private
 
   def assignation_params
-    h = { expires_at: Time.at(params[:expiresAt]).in_time_zone.to_date }
+    h = { expires_at: Time.at((params[:expiresAt]/1000).floor).in_time_zone.to_date }
   end
 end

@@ -6,7 +6,7 @@ class QuizToGroupAssignation < ApplicationRecord
   scope :expired, -> {where('expires_at < ?', Date.today)}
 
   def expiresAt
-    self.expires_at.to_time.to_i
+    self.expires_at.to_time.to_i * 1000
   end
 
   def highest_grades

@@ -47,8 +47,8 @@ class GroupsController < ApplicationController
 
   def group_params
     h = params.permit(:name)
-    h[:start_date] = Time.at(params[:startDate]).in_time_zone.to_date
-    h[:end_date] = Time.at(params[:endDate]).in_time_zone.to_date
+    h[:start_date] = Time.at((params[:startDate]/1000).floor).in_time_zone.to_date
+    h[:end_date] = Time.at((params[:endDate]/1000).floor).in_time_zone.to_date
     h[:professor_id] = params[:teacherId]
     h
   end
@@ -56,10 +56,10 @@ class GroupsController < ApplicationController
   def update_group_params
     h = params.permit(:id, :name)
     if !h[:start_date].nil?
-      h[:start_date] = Time.at(params[:startDate]).in_time_zone.to_date
+      h[:start_date] = Time.at((params[:startDate]/1000).floor).in_time_zone.to_date
     end
     if !h[:end_date].nil?
-      h[:end_date] = Time.at(params[:endDate]).in_time_zone.to_date
+      h[:end_date] = Time.at((params[:endDate]/1000).floor).in_time_zone.to_date
     end
     h
   end

@@ -7,7 +7,7 @@ class Quiz < ApplicationRecord
   has_many :groups, through: :quiz_to_group_assignations
 
   def createdAt
-    self.created_at.to_time.to_i
+    self.created_at.to_time.to_i * 1000
   end
 
   def number_of_completed(group_identifier)
